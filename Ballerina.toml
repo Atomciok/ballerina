@@ -1,0 +1,12 @@
+[build-options]
+  observabilityIncluded = true
+
+[package]
+  distribution = "2201.3.1"
+  export = ["gmail_new_attachment_to_amazon_s3"]
+  icon = "docs/icon.png"
+  keywords = ["Kind/Sample","Type/Webhook","Category/Integration","Internal/http"]
+  name = "gmail_new_attachment_to_amazon_s3"
+  org = "atom"
+  version = "3.1.0"
+
