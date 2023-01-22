@@ -1,0 +1,621 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "atom": {
+      "type": "object",
+      "properties": {
+        "gmail_new_attachment_to_amazon_s3": {
+          "type": "object",
+          "properties": {
+            "gmailConfig": {
+              "type": "object",
+              "properties": {
+                "clientId": {
+                  "type": "string"
+                },
+                "clientSecret": {
+                  "type": "string"
+                },
+                "refreshUrl": {
+                  "type": "string"
+                },
+                "refreshToken": {
+                  "type": "string"
+                },
+                "project": {
+                  "type": "string"
+                },
+                "callbackURL": {
+                  "type": "string"
+                },
+                "secureSocketConfig": {
+                  "type": "object",
+                  "properties": {
+                    "enable": {
+                      "type": "boolean"
+                    },
+                    "cert": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "path": {
+                              "type": "string"
+                            },
+                            "password": {
+                              "type": "string"
+                            }
+                          },
+                          "additionalProperties": false,
+                          "required": [
+                            "path",
+                            "password"
+                          ],
+                          "name": "ballerina/crypto:2.3.0:TrustStore"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "key": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "path": {
+                              "type": "string"
+                            },
+                            "password": {
+                              "type": "string"
+                            }
+                          },
+                          "additionalProperties": false,
+                          "required": [
+                            "path",
+                            "password"
+                          ],
+                          "name": "ballerina/crypto:2.3.0:KeyStore"
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "certFile": {
+                              "type": "string"
+                            },
+                            "keyFile": {
+                              "type": "string"
+                            },
+                            "keyPassword": {
+                              "type": "string"
+                            }
+                          },
+                          "additionalProperties": false,
+                          "required": [
+                            "certFile",
+                            "keyFile"
+                          ],
+                          "name": "ballerina/http:2.5.2:CertKey"
+                        }
+                      ]
+                    },
+                    "protocol": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "enum": [
+                            "DTLS",
+                            "TLS",
+                            "SSL"
+                          ]
+                        },
+                        "versions": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "additionalProperties": false,
+                      "required": [
+                        "name",
+                        "versions"
+                      ]
+                    },
+                    "certValidation": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "enum": [
+                            "OCSP_STAPLING",
+                            "OCSP_CRL"
+                          ]
+                        },
+                        "cacheSize": {
+                          "type": "integer"
+                        },
+                        "cacheValidityPeriod": {
+                          "type": "integer"
+                        }
+                      },
+                      "additionalProperties": false,
+                      "required": [
+                        "type",
+                        "cacheSize",
+                        "cacheValidityPeriod"
+                      ]
+                    },
+                    "ciphers": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "verifyHostName": {
+                      "type": "boolean"
+                    },
+                    "shareSession": {
+                      "type": "boolean"
+                    },
+                    "handshakeTimeout": {
+                      "type": "number"
+                    },
+                    "sessionTimeout": {
+                      "type": "number"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "enable",
+                    "verifyHostName",
+                    "shareSession"
+                  ],
+                  "name": "ballerina/http:2.5.2:ClientSecureSocket"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "clientId",
+                "clientSecret",
+                "refreshUrl",
+                "refreshToken",
+                "project",
+                "callbackURL"
+              ],
+              "name": "ballerinax/trigger.google.mail:0.9.1:ListenerConfig",
+              "description": "The connection configuration of the Gmail listener"
+            },
+            "amazonS3Config": {
+              "type": "object",
+              "properties": {
+                "auth": {},
+                "accessKeyId": {
+                  "type": "string"
+                },
+                "secretAccessKey": {
+                  "type": "string"
+                },
+                "region": {
+                  "type": "string"
+                },
+                "httpVersion": {
+                  "enum": [
+                    "2.0",
+                    "1.1",
+                    "1.0"
+                  ]
+                },
+                "http1Settings": {
+                  "type": "object",
+                  "properties": {
+                    "keepAlive": {},
+                    "chunking": {},
+                    "proxy": {
+                      "type": "object",
+                      "properties": {
+                        "host": {
+                          "type": "string"
+                        },
+                        "port": {
+                          "type": "integer"
+                        },
+                        "userName": {
+                          "type": "string"
+                        },
+                        "password": {
+                          "type": "string"
+                        }
+                      },
+                      "additionalProperties": false,
+                      "required": [
+                        "host",
+                        "port",
+                        "userName",
+                        "password"
+                      ],
+                      "name": "ballerinax/client.config:1.0.1:ProxyConfig"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "keepAlive",
+                    "chunking"
+                  ],
+                  "name": "ballerinax/client.config:1.0.1:ClientHttp1Settings"
+                },
+                "http2Settings": {
+                  "type": "object",
+                  "properties": {
+                    "http2PriorKnowledge": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "http2PriorKnowledge"
+                  ],
+                  "name": "ballerina/http:2.5.2:ClientHttp2Settings"
+                },
+                "timeout": {
+                  "type": "number"
+                },
+                "forwarded": {
+                  "type": "string"
+                },
+                "poolConfig": {
+                  "type": "object",
+                  "properties": {
+                    "maxActiveConnections": {
+                      "type": "integer"
+                    },
+                    "maxIdleConnections": {
+                      "type": "integer"
+                    },
+                    "waitTime": {
+                      "type": "number"
+                    },
+                    "maxActiveStreamsPerConnection": {
+                      "type": "integer"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "maxActiveConnections",
+                    "maxIdleConnections",
+                    "waitTime",
+                    "maxActiveStreamsPerConnection"
+                  ],
+                  "name": "ballerina/http:2.5.2:PoolConfiguration"
+                },
+                "cache": {
+                  "type": "object",
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean"
+                    },
+                    "isShared": {
+                      "type": "boolean"
+                    },
+                    "capacity": {
+                      "type": "integer"
+                    },
+                    "evictionFactor": {
+                      "type": "number"
+                    },
+                    "policy": {}
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "enabled",
+                    "isShared",
+                    "capacity",
+                    "evictionFactor",
+                    "policy"
+                  ],
+                  "name": "ballerina/http:2.5.2:CacheConfig"
+                },
+                "compression": {},
+                "circuitBreaker": {
+                  "type": "object",
+                  "properties": {
+                    "rollingWindow": {
+                      "type": "object",
+                      "properties": {
+                        "requestVolumeThreshold": {
+                          "type": "integer"
+                        },
+                        "timeWindow": {
+                          "type": "number"
+                        },
+                        "bucketSize": {
+                          "type": "number"
+                        }
+                      },
+                      "additionalProperties": false,
+                      "required": [
+                        "requestVolumeThreshold",
+                        "timeWindow",
+                        "bucketSize"
+                      ],
+                      "name": "ballerina/http:2.5.2:RollingWindow"
+                    },
+                    "failureThreshold": {
+                      "type": "number"
+                    },
+                    "resetTime": {
+                      "type": "number"
+                    },
+                    "statusCodes": {
+                      "type": "array",
+                      "items": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "rollingWindow",
+                    "failureThreshold",
+                    "resetTime",
+                    "statusCodes"
+                  ],
+                  "name": "ballerina/http:2.5.2:CircuitBreakerConfig"
+                },
+                "retryConfig": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "interval": {
+                      "type": "number"
+                    },
+                    "backOffFactor": {
+                      "type": "number"
+                    },
+                    "maxWaitInterval": {
+                      "type": "number"
+                    },
+                    "statusCodes": {
+                      "type": "array",
+                      "items": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "count",
+                    "interval",
+                    "backOffFactor",
+                    "maxWaitInterval",
+                    "statusCodes"
+                  ],
+                  "name": "ballerina/http:2.5.2:RetryConfig"
+                },
+                "responseLimits": {
+                  "type": "object",
+                  "properties": {
+                    "maxStatusLineLength": {
+                      "type": "integer"
+                    },
+                    "maxHeaderSize": {
+                      "type": "integer"
+                    },
+                    "maxEntityBodySize": {
+                      "type": "integer"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "maxStatusLineLength",
+                    "maxHeaderSize",
+                    "maxEntityBodySize"
+                  ],
+                  "name": "ballerina/http:2.5.2:ResponseLimitConfigs"
+                },
+                "secureSocket": {
+                  "type": "object",
+                  "properties": {
+                    "enable": {
+                      "type": "boolean"
+                    },
+                    "cert": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "path": {
+                              "type": "string"
+                            },
+                            "password": {
+                              "type": "string"
+                            }
+                          },
+                          "additionalProperties": false,
+                          "required": [
+                            "path",
+                            "password"
+                          ],
+                          "name": "ballerina/crypto:2.3.0:TrustStore"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "key": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "path": {
+                              "type": "string"
+                            },
+                            "password": {
+                              "type": "string"
+                            }
+                          },
+                          "additionalProperties": false,
+                          "required": [
+                            "path",
+                            "password"
+                          ],
+                          "name": "ballerina/crypto:2.3.0:KeyStore"
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "certFile": {
+                              "type": "string"
+                            },
+                            "keyFile": {
+                              "type": "string"
+                            },
+                            "keyPassword": {
+                              "type": "string"
+                            }
+                          },
+                          "additionalProperties": false,
+                          "required": [
+                            "certFile",
+                            "keyFile"
+                          ],
+                          "name": "ballerina/http:2.5.2:CertKey"
+                        }
+                      ]
+                    },
+                    "protocol": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "enum": [
+                            "DTLS",
+                            "TLS",
+                            "SSL"
+                          ]
+                        },
+                        "versions": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "additionalProperties": false,
+                      "required": [
+                        "name",
+                        "versions"
+                      ]
+                    },
+                    "certValidation": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "enum": [
+                            "OCSP_STAPLING",
+                            "OCSP_CRL"
+                          ]
+                        },
+                        "cacheSize": {
+                          "type": "integer"
+                        },
+                        "cacheValidityPeriod": {
+                          "type": "integer"
+                        }
+                      },
+                      "additionalProperties": false,
+                      "required": [
+                        "type",
+                        "cacheSize",
+                        "cacheValidityPeriod"
+                      ]
+                    },
+                    "ciphers": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "verifyHostName": {
+                      "type": "boolean"
+                    },
+                    "shareSession": {
+                      "type": "boolean"
+                    },
+                    "handshakeTimeout": {
+                      "type": "number"
+                    },
+                    "sessionTimeout": {
+                      "type": "number"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "enable",
+                    "verifyHostName",
+                    "shareSession"
+                  ],
+                  "name": "ballerina/http:2.5.2:ClientSecureSocket"
+                },
+                "proxy": {
+                  "type": "object",
+                  "properties": {
+                    "host": {
+                      "type": "string"
+                    },
+                    "port": {
+                      "type": "integer"
+                    },
+                    "userName": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "host",
+                    "port",
+                    "userName",
+                    "password"
+                  ],
+                  "name": "ballerina/http:2.5.2:ProxyConfig"
+                },
+                "validation": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "accessKeyId",
+                "secretAccessKey",
+                "httpVersion",
+                "timeout",
+                "forwarded",
+                "compression",
+                "validation"
+              ],
+              "name": "ballerinax/aws.s3:3.0.0:ConnectionConfig",
+              "description": "The connection configuration of the Amazon S3 client"
+            },
+            "bucketName": {
+              "type": "string",
+              "description": "The unique name of the Amazon S3 bucket"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "gmailConfig",
+            "amazonS3Config",
+            "bucketName"
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
